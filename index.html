@@ -3,33 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anjani Super Mart</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; text-align: center; }
-        header { background-color: #2874f0; color: white; padding: 20px; }
-        .main-card { background: white; margin: 20px auto; padding: 30px; width: 80%; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        h1 { margin: 0; font-size: 28px; }
-        p { color: #555; font-size: 18px; }
-        .status { background: #ff9f00; color: white; padding: 10px 20px; border-radius: 50px; display: inline-block; font-weight: bold; margin-top: 20px; }
-        footer { margin-top: 50px; color: #888; font-size: 12px; }
-    </style>
-</head>
+    <title>Anjani Super Mart - Online Store</title>
+    <link rel="stylesheet" href="style.css"> </head>
 <body>
 
-    <header>
-        <h1>ANJANI SUPER MART</h1>
-    </header>
+<header>
+    <h1>Anjani Super Mart</h1>
+    <p>Har ghar ki zaroorat, ab online!</p>
+</header>
 
-    <div class="main-card">
-        <h2>नमस्ते! अंजनी सुपर मार्ट में आपका स्वागत है।</h2>
-        <p>हर घर की हर जरूरत का सामान एक जगह।</p>
-        <p>हम अपनी वेबसाइट पर काम कर रहे हैं, जल्द ही आप यहाँ से ऑनलाइन शॉपिंग कर पाएंगे।</p>
-        <div class="status">वेबसाइट जल्द आ रही है (Coming Soon)</div>
+<div class="container">
+    <div class="category-title">किराना और राशन (Groceries)</div>
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Sugar">
+            <h3>चीनी (Sugar)</h3>
+            <p class="price">₹45/kg</p>
+            <button onclick="sendOrder('Sugar', '45')">WhatsApp Order</button>
+        </div>
+        <div class="product-card">
+            <img src="https://via.placeholder.com/150" alt="Oil">
+            <h3>सरसों तेल (Oil)</h3>
+            <p class="price">₹160/L</p>
+            <button onclick="sendOrder('Oil', '160')">WhatsApp Order</button>
+        </div>
     </div>
+</div>
 
-    <footer>
-        &copy; 2026 Anjani Super Mart - Created by Kaushal
-    </footer>
-
-</body>
+<script src="script.js"></script> </body>
 </html>
+<div class="category-title">कपड़े और साड़ियाँ (Saree & Clothes)</div>
+<div class="product-grid">
+    <div class="product-card">
+        <img src="saree.jpg" alt="Saree"> <h3>Banarasi Saree</h3>
+        <p class="price">₹1200</p>
+        <button onclick="sendOrder('Banarasi Saree', '1200')">WhatsApp Order</button>
+    </div>
+</div>
+
+<div class="category-title">बच्चों के खिलौने (Toys)</div>
+<div class="product-grid">
+    <div class="product-card">
+        <img src="toy.jpg" alt="Toy Car">
+        <h3>Remote Control Car</h3>
+        <p class="price">₹499</p>
+        <button onclick="sendOrder('Toy Car', '499')">WhatsApp Order</button>
+    </div>
+</div>
+
+<div class="category-title">प्लास्टिक का सामान (Plastics)</div>
+<div class="product-grid">
+    <div class="product-card">
+        <img src="bucket.jpg" alt="Bucket">
+        <h3>Plastic Bucket (20L)</h3>
+        <p class="price">₹150</p>
+        <button onclick="sendOrder('Plastic Bucket', '150')">WhatsApp Order</button>
+    </div>
+</div>
