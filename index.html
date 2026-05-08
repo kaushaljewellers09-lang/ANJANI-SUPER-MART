@@ -111,7 +111,7 @@
 
     function sendOrder(name, price, qtyId, unit) {
         let qty = document.getElementById(qtyId).innerText;
-        let phone = "91XXXXXXXXXX"; // <--- APNA NUMBER YAHAN DALO
+        let phone = "918467820968"; // <--- APNA NUMBER YAHAN DALO
         let total = price * qty;
         let msg = `*Anjani Super Mart - Naya Order*\n\n*Saman:* ${name}\n*Quantity:* ${qty} ${unit}\n*Total Price:* ₹${total}\n\nKripya order confirm karein!`;
         window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(msg));
