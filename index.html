@@ -5,60 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anjani Super Mart</title>
     <style>
-        /* CSS yahan hai */
-        body { font-family: sans-serif; margin: 0; background: #f4f4f4; padding-bottom: 50px; }
-        header { background: #2874f0; color: white; text-align: center; padding: 20px; }
-        .search-box { padding: 10px; background: #2874f0; }
-        #searchInput { width: 100%; padding: 12px; border-radius: 5px; border: none; outline: none; }
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; }
-        .product-card { background: white; padding: 12px; border-radius: 10px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .product-card img { width: 100%; height: 120px; object-fit: contain; margin-bottom: 10px; }
-        .price { color: #28a745; font-weight: bold; font-size: 18px; margin: 10px 0; }
-        /* WhatsApp Button Design */
-        .order-btn { background: #25D366; color: white; border: none; padding: 10px; width: 100%; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; color: #333; padding-bottom: 30px; }
+        header { background: #2874f0; color: white; text-align: center; padding: 20px 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .search-box { padding: 15px; background: #2874f0; position: sticky; top: 0; z-index: 100; }
+        #searchInput { width: 100%; padding: 12px; border-radius: 25px; border: none; outline: none; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        
+        .category-title { background: #fff; padding: 12px; margin: 20px 10px 10px; font-weight: bold; color: #2874f0; border-left: 5px solid #fb641b; border-radius: 4px; font-size: 18px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        
+        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px; }
+        .product-card { background: white; padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .product-card img { width: 100%; height: 120px; object-fit: contain; margin-bottom: 10px; border-radius: 8px; background: #f9f9f9; }
+        
+        h3 { font-size: 15px; margin: 5px 0; height: 35px; overflow: hidden; }
+        .desc { font-size: 11px; color: #777; margin-bottom: 8px; height: 30px; overflow: hidden; }
+        .price { color: #28a745; font-weight: bold; font-size: 18px; margin: 5px 0; }
+        .unit { font-size: 12px; color: #888; font-weight: normal; }
+
+        .qty-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 10px 0; background: #f0f0f0; padding: 5px; border-radius: 8px; }
+        .qty-btn { background: #fff; border: 1px solid #ddd; width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; font-size: 18px; }
+        .qty-val { font-weight: bold; font-size: 16px; min-width: 20px; }
+
+        .order-btn { background: #25D366; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.2s; }
+        .order-btn:active { transform: scale(0.96); }
     </style>
 </head>
 <body>
 
 <header>
     <h1>Anjani Super Mart</h1>
+    <p>Apki apni online dukaan</p>
 </header>
 
 <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Saman dhoondein..." onkeyup="searchProduct()">
+    <input type="text" id="searchInput" placeholder="Saaman ka naam likhein..." onkeyup="searchProduct()">
 </div>
 
+<div class="category-title">किराना सामान (Grocery)</div>
 <div class="product-grid">
     <div class="product-card">
         <img src="oil.jpg" alt="Oil">
-        <h3>Sarso Tel (1L)</h3>
-        <p class="price">₹150</p>
-        <button class="order-btn" onclick="sendWhatsApp('Sarso Tel', '160')">WhatsApp Order</button>
+        <h3>Fortune Sarso Tel</h3>
+        <p class="desc">Shuddh Kachi Ghani Tel</p>
+        <p class="price">₹165 <span class="unit">/Litre</span></p>
+        <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty('q1', -1)">-</button>
+            <span class="qty-val" id="q1">1</span>
+            <button class="qty-btn" onclick="changeQty('q1', 1)">+</button>
+        </div>
+        <button class="order-btn" onclick="sendOrder('Fortune Oil', 165, 'q1', 'Litre')">WhatsApp Order</button>
     </div>
 
     <div class="product-card">
+        <img src="sugar.jpg" alt="Sugar">
+        <h3>Sugar (Chini)</h3>
+        <p class="desc">Moti aur saaf chini</p>
+        <p class="price">₹45 <span class="unit">/kg</span></p>
+        <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty('q2', -1)">-</button>
+            <span class="qty-val" id="q2">1</span>
+            <button class="qty-btn" onclick="changeQty('q2', 1)">+</button>
+        </div>
+        <button class="order-btn" onclick="sendOrder('Sugar', 45, 'q2', 'kg')">WhatsApp Order</button>
+    </div>
+</div>
+
+<div class="category-title">कपड़े (Clothes & Saree)</div>
+<div class="product-grid">
+    <div class="product-card">
         <img src="saree.jpg" alt="Saree">
         <h3>Banarasi Saree</h3>
-        <p class="price">₹1200</p>
-        <button class="order-btn" onclick="sendWhatsApp('Banarasi Saree', '1200')">WhatsApp Order</button>
+        <p class="desc">Party wear silk saree</p>
+        <p class="price">₹1500 <span class="unit">/Piece</span></p>
+        <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty('q3', -1)">-</button>
+            <span class="qty-val" id="q3">1</span>
+            <button class="qty-btn" onclick="changeQty('q3', 1)">+</button>
+        </div>
+        <button class="order-btn" onclick="sendOrder('Banarasi Saree', 1500, 'q3', 'Piece')">WhatsApp Order</button>
+    </div>
+</div>
+
+<div class="category-title">प्लास्टिक सामान (Plastics)</div>
+<div class="product-grid">
+    <div class="product-card">
+        <img src="bucket.jpg" alt="Bucket">
+        <h3>Plastic Bucket (20L)</h3>
+        <p class="desc">Mazboot plastic balti</p>
+        <p class="price">₹180 <span class="unit">/Piece</span></p>
+        <div class="qty-controls">
+            <button class="qty-btn" onclick="changeQty('q4', -1)">-</button>
+            <span class="qty-val" id="q4">1</span>
+            <button class="qty-btn" onclick="changeQty('q4', 1)">+</button>
+        </div>
+        <button class="order-btn" onclick="sendOrder('Plastic Bucket', 180, 'q4', 'Piece')">WhatsApp Order</button>
     </div>
 </div>
 
 <script>
-    // WhatsApp function
-    function sendWhatsApp(name, price) {
-        let phone = "91-8467820968"; // 
-        let msg = "Namaste Anjani Mart, mujhe '" + name + "' chahiye. Price: ₹" + price;
-        let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(msg);
-        window.open(url, "_blank");
+    function changeQty(id, delta) {
+        let el = document.getElementById(id);
+        let val = parseInt(el.innerText) + delta;
+        if(val < 1) val = 1;
+        el.innerText = val;
     }
 
-    // Search function
+    function sendOrder(name, price, qtyId, unit) {
+        let qty = document.getElementById(qtyId).innerText;
+        let phone = "91XXXXXXXXXX"; // <--- APNA NUMBER YAHAN DALO
+        let total = price * qty;
+        let msg = `*Anjani Super Mart - Naya Order*\n\n*Saman:* ${name}\n*Quantity:* ${qty} ${unit}\n*Total Price:* ₹${total}\n\nKripya order confirm karein!`;
+        window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(msg));
+    }
+
     function searchProduct() {
         let input = document.getElementById('searchInput').value.toLowerCase();
         let cards = document.getElementsByClassName('product-card');
         for (let i = 0; i < cards.length; i++) {
-            let title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+            let title = cards[i].innerText.toLowerCase();
             cards[i].style.display = title.includes(input) ? "" : "none";
         }
     }
