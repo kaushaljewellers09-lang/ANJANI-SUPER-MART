@@ -3,129 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anjani Super Mart</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; color: #333; padding-bottom: 30px; }
-        header { background: #2874f0; color: white; text-align: center; padding: 20px 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .search-box { padding: 15px; background: #2874f0; position: sticky; top: 0; z-index: 100; }
-        #searchInput { width: 100%; padding: 12px; border-radius: 25px; border: none; outline: none; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-        
-        .category-title { background: #fff; padding: 12px; margin: 20px 10px 10px; font-weight: bold; color: #2874f0; border-left: 5px solid #fb641b; border-radius: 4px; font-size: 18px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
-        
-        .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 10px; }
-        .product-card { background: white; padding: 15px; border-radius: 12px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .product-card img { width: 100%; height: 120px; object-fit: contain; margin-bottom: 10px; border-radius: 8px; background: #f9f9f9; }
-        
-        h3 { font-size: 15px; margin: 5px 0; height: 35px; overflow: hidden; }
-        .desc { font-size: 11px; color: #777; margin-bottom: 8px; height: 30px; overflow: hidden; }
-        .price { color: #28a745; font-weight: bold; font-size: 18px; margin: 5px 0; }
-        .unit { font-size: 12px; color: #888; font-weight: normal; }
-
-        .qty-controls { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 10px 0; background: #f0f0f0; padding: 5px; border-radius: 8px; }
-        .qty-btn { background: #fff; border: 1px solid #ddd; width: 30px; height: 30px; border-radius: 50%; font-weight: bold; cursor: pointer; font-size: 18px; }
-        .qty-val { font-weight: bold; font-size: 16px; min-width: 20px; }
-
-        .order-btn { background: #25D366; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 14px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); transition: 0.2s; }
-        .order-btn:active { transform: scale(0.96); }
-    </style>
+    <title>अंजनी सुपर मार्ट - Kunda | Groceries & Daily Needs</title>
+    <meta name="description" content="अंजनी सुपर मार्ट - कुंडा के सबसे अच्छे किराने की दुकान। 20km रेंज में फ्री डिलीवरी।">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header>
-    <h1>Anjani Super Mart</h1>
-    <p>Apki apni online dukaan</p>
-</header>
-
-<div class="search-box">
-    <input type="text" id="searchInput" placeholder="Saaman ka naam likhein..." onkeyup="searchProduct()">
-</div>
-
-<div class="category-title">किराना सामान (Grocery)</div>
-<div class="product-grid">
-    <div class="product-card">
-        <img src="oil.jpg" alt="Oil">
-        <h3>Fortune Sarso Tel</h3>
-        <p class="desc">Shuddh Kachi Ghani Tel</p>
-        <p class="price">₹165 <span class="unit">/Litre</span></p>
-        <div class="qty-controls">
-            <button class="qty-btn" onclick="changeQty('q1', -1)">-</button>
-            <span class="qty-val" id="q1">1</span>
-            <button class="qty-btn" onclick="changeQty('q1', 1)">+</button>
+    <!-- Location Alert -->
+    <div id="locationAlert" class="location-alert">
+        <div class="alert-content">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>केवल कुंडा के 20km रेंज में सेवा उपलब्ध</span>
+            <button onclick="closeLocationAlert()">×</button>
         </div>
-        <button class="order-btn" onclick="sendOrder('Fortune Oil', 165, 'q1', 'Litre')">WhatsApp Order</button>
     </div>
 
-    <div class="product-card">
-        <img src="sugar.jpg" alt="Sugar">
-        <h3>Sugar (Chini)</h3>
-        <p class="desc">Moti aur saaf chini</p>
-        <p class="price">₹45 <span class="unit">/kg</span></p>
-        <div class="qty-controls">
-            <button class="qty-btn" onclick="changeQty('q2', -1)">-</button>
-            <span class="qty-val" id="q2">1</span>
-            <button class="qty-btn" onclick="changeQty('q2', 1)">+</button>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <img src="images/logo.png" alt="अंजनी सुपर मार्ट" class="logo-img">
+                    <div>
+                        <h2>अंजनी सुपर मार्ट</h2>
+                        <p>कुंडा | प्रतापगढ़</p>
+                    </div>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home"><i class="fas fa-home"></i> होम</a></li>
+                    <li class="dropdown">
+                        <a href="#products"><i class="fas fa-box"></i> कैटेगरी <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" onclick="filterCategory('all')">सभी</a></li>
+                            <li><a href="#" onclick="filterCategory('dairy')">डेयरी</a></li>
+                            <li><a href="#" onclick="filterCategory('grains')">अनाज</a></li>
+                            <li><a href="#" onclick="filterCategory('oil')">तेल</a></li>
+                            <li><a href="#" onclick="filterCategory('spices')">मसाले</a></li>
+                            <li><a href="#" onclick="filterCategory('snacks')">स्नैक्स</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#offers"><i class="fas fa-tags"></i> ऑफर</a></li>
+                    <li><a href="#contact"><i class="fas fa-phone"></i> संपर्क</a></li>
+                    <a href="#" class="cart-btn" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount">0</span>
+                    </a>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-store"></i> अंजनी सुपर मार्ट</h1>
+            <p>कुंडा के सबसे भरोसेमंद किराने की दुकान | 20km रेंज में फ्री डिलीवरी</p>
+            <div class="hero-stats">
+                <div><i class="fas fa-box-open"></i> 500+ उत्पाद</div>
+                <div><i class="fas fa-truck"></i> फ्री डिलीवरी</div>
+                <div><i class="fas fa-clock"></i> 7:00 AM - 10:00 PM</div>
+            </div>
+            <button class="cta-btn" onclick="scrollToProducts()">
+                <i class="fas fa-shopping-bag"></i> अभी खरीदारी शुरू करें
+            </button>
         </div>
-        <button class="order-btn" onclick="sendOrder('Sugar', 45, 'q2', 'kg')">WhatsApp Order</button>
-    </div>
-</div>
+    </section>
 
-<div class="category-title">कपड़े (Clothes & Saree)</div>
-<div class="product-grid">
-    <div class="product-card">
-        <img src="saree.jpg" alt="Saree">
-        <h3>Banarasi Saree</h3>
-        <p class="desc">Party wear silk saree</p>
-        <p class="price">₹1500 <span class="unit">/Piece</span></p>
-        <div class="qty-controls">
-            <button class="qty-btn" onclick="changeQty('q3', -1)">-</button>
-            <span class="qty-val" id="q3">1</span>
-            <button class="qty-btn" onclick="changeQty('q3', 1)">+</button>
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-boxes"></i> हमारे उत्पाद</h2>
+                <div class="category-filter">
+                    <button class="filter-btn active" onclick="filterCategory('all')">सभी</button>
+                    <button class="filter-btn" onclick="filterCategory('dairy')">डेयरी</button>
+                    <button class="filter-btn" onclick="filterCategory('grains')">अनाज</button>
+                    <button class="filter-btn" onclick="filterCategory('oil')">तेल</button>
+                    <button class="filter-btn" onclick="filterCategory('spices')">मसाले</button>
+                    <button class="filter-btn" onclick="filterCategory('snacks')">स्नैक्स</button>
+                </div>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products load here -->
+            </div>
         </div>
-        <button class="order-btn" onclick="sendOrder('Banarasi Saree', 1500, 'q3', 'Piece')">WhatsApp Order</button>
-    </div>
-</div>
+    </section>
 
-<div class="category-title">प्लास्टिक सामान (Plastics)</div>
-<div class="product-grid">
-    <div class="product-card">
-        <img src="bucket.jpg" alt="Bucket">
-        <h3>Plastic Bucket (20L)</h3>
-        <p class="desc">Mazboot plastic balti</p>
-        <p class="price">₹180 <span class="unit">/Piece</span></p>
-        <div class="qty-controls">
-            <button class="qty-btn" onclick="changeQty('q4', -1)">-</button>
-            <span class="qty-val" id="q4">1</span>
-            <button class="qty-btn" onclick="changeQty('q4', 1)">+</button>
+    <!-- Offers Section -->
+    <section id="offers" class="offers">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-tags"></i> स्पेशल ऑफर</h2>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-discount">20% OFF</div>
+                    <h3>₹100+ पर फ्री डिलीवरी</h3>
+                    <p>कुंडा के 20km में</p>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-discount">10% OFF</div>
+                    <h3>पहली खरीदारी पर</h3>
+                    <p>नए ग्राहकों के लिए</p>
+                </div>
+            </div>
         </div>
-        <button class="order-btn" onclick="sendOrder('Plastic Bucket', 180, 'q4', 'Piece')">WhatsApp Order</button>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shopping-cart"></i> आपका ऑर्डर</h2>
+                <span class="close" onclick="closeCart()">&times;</span>
+            </div>
+            <div id="cartItems" class="cart-items"></div>
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <h3>कुल: ₹<span id="totalAmount">0</span></h3>
+                    <p><strong>फ्री डिलीवरी</strong> (20km रेंज में)</p>
+                </div>
+                <button class="whatsapp-btn" id="whatsappBtn" onclick="placeOrder()">
+                    <i class="fab fa-whatsapp"></i> WhatsApp पर ऑर्डर भेजें
+                </button>
+            </div>
+        </div>
     </div>
-</div>
 
-<script>
-    function changeQty(id, delta) {
-        let el = document.getElementById(id);
-        let val = parseInt(el.innerText) + delta;
-        if(val < 1) val = 1;
-        el.innerText = val;
-    }
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title"><i class="fas fa-phone"></i> संपर्क करें</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt fa-2x"></i>
+                    <h3>पता</h3>
+                    <p>कुंडा, प्रतापगढ़<br>उत्तर प्रदेश - 230204</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone fa-2x"></i>
+                    <h3>फोन / WhatsApp</h3>
+                    <p><a href="tel:+919xxxxxxxxx">+91 98XXX XXXXX</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock fa-2x"></i>
+                    <h3>समय</h3>
+                    <p>सुबह 7:00 - रात 10:00<br>सप्ताह के सभी दिन</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function sendOrder(name, price, qtyId, unit) {
-        let qty = document.getElementById(qtyId).innerText;
-        let phone = "918467820968"; // <--- APNA NUMBER YAHAN DALO
-        let total = price * qty;
-        let msg = `*Anjani Super Mart - Naya Order*\n\n*Saman:* ${name}\n*Quantity:* ${qty} ${unit}\n*Total Price:* ₹${total}\n\nKripya order confirm karein!`;
-        window.open("https://wa.me/" + phone + "?text=" + encodeURIComponent(msg));
-    }
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>अंजनी सुपर मार्ट</h3>
+                    <p>कुंडा का सबसे भरोसेमंद नाम</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">होम</a>
+                    <a href="#products">उत्पाद</a>
+                    <a href="#contact">संपर्क</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 अंजनी सुपर मार्ट। सभी अधिकार सुरक्षित। | केवल कुंडा 20km रेंज में सेवा।</p>
+            </div>
+        </div>
+    </footer>
 
-    function searchProduct() {
-        let input = document.getElementById('searchInput').value.toLowerCase();
-        let cards = document.getElementsByClassName('product-card');
-        for (let i = 0; i < cards.length; i++) {
-            let title = cards[i].innerText.toLowerCase();
-            cards[i].style.display = title.includes(input) ? "" : "none";
-        }
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
