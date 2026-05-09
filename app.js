@@ -12,7 +12,7 @@ const categories = [
     {name: 'Jewellery', icon: 'fa-gem', color: '#ffd700'}
 ];
 
-// 🔥 WHATSAPP ORDER FUNCTION (APNA NUMBER DAALO 👇)
+// 🔥 WHATSAPP ORDER FUNCTION (+918467820968)
 function placeOrder(productId) {
     const product = getProducts().find(p => p.id === productId);
     const name = prompt('👤 आपका नाम:');
@@ -29,8 +29,8 @@ function placeOrder(productId) {
                        `💵 Total: ₹${product.price * qty}\n\n` +
                        `*Order Confirmed! हम 30 मिनट में कॉल करेंगे। 📞*`;
         
-        // 👇 APNA WHATSAPP NUMBER DAALO (10 digits - 91 ke saath)
-        window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+        // 👇 APNA WHATSAPP NUMBER DAALO (+918467820968)
+        window.open(`https://wa.me/918467820968?text=${encodeURIComponent(message)}`, '_blank');
         alert('✅ Order WhatsApp पर भेज दिया गया!');
     }
 }
