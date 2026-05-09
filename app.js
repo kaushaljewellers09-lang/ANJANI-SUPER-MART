@@ -12,6 +12,34 @@ const categories = [
     {name: 'Jewellery', icon: 'fa-gem', color: '#ffd700'}
 ];
 
+// 🔥 WHATSAPP ORDER FUNCTION (APNA NUMBER DAALO 👇)
+function placeOrder(productId) {
+    const product = getProducts().find(p => p.id === productId);
+    const name = prompt('👤 आपका नाम:');
+    const phone = prompt('📱 Phone Number:');
+    const qty = prompt('🔢 Quantity:');
+    
+    if(name && phone && qty) {
+        const message = `🛒 *ANJANI SUPER MART - नया ऑर्डर*\n\n` +
+                       `👤 Name: ${name}\n` +
+                       `📱 Phone: ${phone}\n` +
+                       `📦 Product: ${product.name}\n` +
+                       `💰 Price: ₹${product.price}\n` +
+                       `🔢 Qty: ${qty}\n` +
+                       `💵 Total: ₹${product.price * qty}\n\n` +
+                       `*Order Confirmed! हम 30 मिनट में कॉल करेंगे। 📞*`;
+        
+        // 👇 APNA WHATSAPP NUMBER DAALO (10 digits - 91 ke saath)
+        window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+        alert('✅ Order WhatsApp पर भेज दिया गया!');
+    }
+}
+
+// 🖼️ IMAGE FUNCTION
+function getProductImage(product) {
+    return product.image || '';
+}
+
 // Load Categories
 function loadCategories() {
     const grid = document.getElementById('categoriesGrid');
@@ -19,35 +47,57 @@ function loadCategories() {
     categories.forEach(cat => {
         grid.innerHTML += `
             <div class="category-card" style="border-top: 5px solid ${cat.color};" onclick="filterByCategory('${cat.name}')">
-                <i class="fas ${cat.icon} text-primary" style="color: ${cat.color};"></i>
+                <i class="fas ${cat.icon}" style="color: ${cat.color}; font-size: 3rem;"></i>
                 <h4>${cat.name}</h4>
             </div>
         `;
     });
 }
 
-// Load Products
+// Get Products from Local Storage
+function getProducts() {
+    return JSON.parse(localStorage.getItem('products')) || [
+        {id: "1", name: "Dalda Vanaspati Ghee", price: 250, category: "Grocery", icon: "fa-oil-can", stock: 50},
+        {id: "2", name: "Kids T-Shirt Pack of 3", price: 499, category: "Kids Wear", icon: "fa-tshirt", stock: 25},
+        {id: "3", name: "Gents Formal Shirt", price: 899, category: "Gents Wear", icon: "fa-user-tie", stock: 30},
+        {id: "4", name: "Designer Kurti", price: 1299, category: "Suit & Kurti", icon: "fa-female", stock: 15},
+        {id: "5", name: "Lakme Lipstick", price: 350, category: "Cosmetics", icon: "fa-magic", stock: 40},
+        {id: "6", name: "Gold Necklace", price: 2500, category: "Jewellery", icon: "fa-gem", stock: 10}
+    ];
+}
+
+// Load Products (WHATSAPP BUTTON WAALA)
 function loadProducts(products = getProducts()) {
     const grid = document.getElementById('productsGrid');
     grid.innerHTML = '';
     
     products.forEach(product => {
         grid.innerHTML += `
-            <div class="product-card" onclick="viewProduct('${product.id}')">
+            <div class="product-card">
                 <div class="product-image">
-                    <i class="fas ${product.icon} text-muted" style="font-size: 3rem;"></i>
+                    <i class="fas ${product.icon} text-muted" style="font-size: 4rem;"></i>
                 </div>
-                <div class="product-info">
-                    <div class="product-name">${product.name}</div>
-                    <div class="d-flex justify-content-between">
-                        <span class="price">₹${product.price}</span>
-                        <span class="badge bg-success">${product.category}</span>
+                <div class="product-info p-3">
+                    <h5 class="product-name fw-bold mb-2">${product.name}</h5>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="price h4 text-success fw-bold">₹${product.price}</span>
+                        <span class="badge bg-primary fs-6">${product.category}</span>
                     </div>
-                    <div class="mt-2">
-                        <small class="text-muted">${product.stock > 0 ? 'In Stock' : 'Out of Stock'}</small>
+                    <div class="stock-status mb-3">
+                        <span class="badge ${product.stock > 0 ? 'bg-success' : 'bg-danger'}">
+                            ${product.stock > 0 ? '✅ In Stock' : '❌ Out of Stock'}
+                        </span>
                     </div>
-                    <button class="btn btn-warning w-100 mt-2" onclick="addToCart('${product.id}', event)">
-                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    
+                    <!-- 🔥 WHATSAPP ORDER BUTTON -->
+                    <button class="btn btn-success w-100 mb-2 fs-6 fw-bold" 
+                            onclick="placeOrder('${product.id}', event)" 
+                            style="background: #25D366 !important; border: none !important; height: 45px;">
+                        <i class="fab fa-whatsapp me-2"></i>Order WhatsApp पर
+                    </button>
+                    
+                    <button class="btn btn-warning w-100 fs-6" onclick="addToCart('${product.id}', event)">
+                        <i class="fas fa-shopping-cart me-1"></i>Add to Cart
                     </button>
                 </div>
             </div>
@@ -65,53 +115,32 @@ function searchProducts() {
     loadProducts(products);
 }
 
-// Get Products from Local Storage
-function getProducts() {
-    return JSON.parse(localStorage.getItem('products')) || [];
-}
-
 // Add to Cart
 function addToCart(productId, event) {
     event.stopPropagation();
-    // Cart logic here
-    alert('Added to Cart! 🛒');
+    alert('🛒 Cart Coming Soon!');
 }
 
 // Filter by Category
-// WhatsApp Order Function
-function placeOrder(productId) {
-    const product = getProducts().find(p => p.id === productId);
-    const customerName = prompt('आपका नाम बताइए:');
-    const customerPhone = prompt('आपका Phone Number:');
-    const quantity = prompt('Quantity:');
-    
-    if (customerName && customerPhone && quantity) {
-        const message = `🛒 *नया ऑर्डर*\n\n` +
-                       `👤 Customer: ${customerName}\n` +
-                       `📱 Phone: ${customerPhone}\n` +
-                       `📦 Product: ${product.name}\n` +
-                       `💰 Price: ₹${product.price}\n` +
-                       `🔢 Quantity: ${quantity}\n` +
-                       `💵 Total: ₹${product.price * quantity}\n\n` +
-                       `⏰ Order Time: ${new Date().toLocaleString('hi-IN')}`;
-        
-        const whatsappUrl = `https://wa.me/918467820968?text=${encodeURIComponent(message)}`;
-        window.open(whatsappUrl, '_blank');
-    }
-}
 function filterByCategory(category) {
     const products = getProducts().filter(p => p.category === category);
     loadProducts(products);
 }
 
-// View Product Details
+// View Product
 function viewProduct(id) {
-    // Product detail page logic
     alert(`Product ID: ${id}`);
 }
 
-// Initialize
+// Search on Enter
 document.addEventListener('DOMContentLoaded', function() {
     loadCategories();
     loadProducts();
+    
+    // Search Enter key
+    document.getElementById('searchInput').addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') {
+            searchProducts();
+        }
+    });
 });
