@@ -78,6 +78,27 @@ function addToCart(productId, event) {
 }
 
 // Filter by Category
+// WhatsApp Order Function
+function placeOrder(productId) {
+    const product = getProducts().find(p => p.id === productId);
+    const customerName = prompt('आपका नाम बताइए:');
+    const customerPhone = prompt('आपका Phone Number:');
+    const quantity = prompt('Quantity:');
+    
+    if (customerName && customerPhone && quantity) {
+        const message = `🛒 *नया ऑर्डर*\n\n` +
+                       `👤 Customer: ${customerName}\n` +
+                       `📱 Phone: ${customerPhone}\n` +
+                       `📦 Product: ${product.name}\n` +
+                       `💰 Price: ₹${product.price}\n` +
+                       `🔢 Quantity: ${quantity}\n` +
+                       `💵 Total: ₹${product.price * quantity}\n\n` +
+                       `⏰ Order Time: ${new Date().toLocaleString('hi-IN')}`;
+        
+        const whatsappUrl = `https://wa.me/918467820968?text=${encodeURIComponent(message)}`;
+        window.open(whatsappUrl, '_blank');
+    }
+}
 function filterByCategory(category) {
     const products = getProducts().filter(p => p.category === category);
     loadProducts(products);
