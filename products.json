@@ -1,0 +1,29 @@
+[
+    {
+        "id": "1",
+        "name": "Dalda Vanaspati Ghee",
+        "price": 250,
+        "category": "Grocery",
+        "icon": "fa-oil-can",
+        "stock": 50,
+        "image": "images/ghee.jpg"
+    },
+    {
+        "id": "2",
+        "name": "Kids T-Shirt Pack of 3",
+        "price": 499,
+        "category": "Kids Wear",
+        "icon": "fa-tshirt",
+        "stock": 25,
+        "image": "images/kids-tshirt.jpg"
+    },
+    {
+        "id": "3",
+        "name": "Gents Formal Shirt",
+        "price": 899,
+        "category": "Gents Wear",
+        "icon": "fa-user-tie",
+        "stock": 30,
+        "image": "images/gents-shirt.jpg"
+    }
+]
