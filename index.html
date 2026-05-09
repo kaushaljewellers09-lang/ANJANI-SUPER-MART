@@ -3,89 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🛒 Anjani Super Mart</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>🛒 Anjani Super Mart - Grocery | Clothes | Jewellery</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #ff6b6b; --secondary: #4ecdc4; --success: #00d2d3; --warning: #f9ca24;
+        }
+        * { font-family: 'Noto Sans Devanagari', sans-serif; }
         body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        
+        /* Navbar */
+        .navbar { background: linear-gradient(90deg, var(--primary), var(--secondary)) !important; box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important; }
+        .navbar-brand { font-weight: 700 !important; font-size: 1.8rem !important; }
+        
+        /* Hero */
         .hero-section { 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; 
-            color: white; 
-            padding: 4rem 2rem; 
-            border-radius: 20px; 
-            margin: 2rem; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--success)) !important; 
+            color: white; padding: 5rem 2rem; border-radius: 25px; margin: 2rem; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3); text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-        .product-card { 
-            transition: all 0.3s; 
-            border: none; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        
+        /* Cards */
+        .product-card, .category-card { 
+            border: none !important; box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important; 
+            border-radius: 20px !important; transition: all 0.4s ease !important; overflow: hidden;
         }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .category-card { 
-            background: white; 
-            padding: 2rem; 
-            border-radius: 15px; 
-            text-align: center; 
-            cursor: pointer; 
-            transition: all 0.3s; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .product-card:hover, .category-card:hover { 
+            transform: translateY(-15px) scale(1.02) !important; 
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25) !important;
         }
-        .category-card:hover { transform: translateY(-5px); }
+        
+        /* WhatsApp */
         .whatsapp-btn { 
-            background: #25D366 !important; 
-            border-color: #25D366 !important; 
-            color: white !important; 
+            background: linear-gradient(45deg, #25D366, #128C7E) !important; 
+            border: none !important; color: white !important; font-weight: 700 !important;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4) !important;
         }
-        .admin-toggle { 
-            position: fixed; 
-            top: 20px; 
-            right: 20px; 
-            z-index: 9999; 
-        }
+        .whatsapp-btn:hover { background: linear-gradient(45deg, #128C7E, #25D366) !important; transform: scale(1.05) !important; }
+        
+        /* Admin */
+        .admin-toggle { background: var(--primary) !important; color: white !important; font-weight: 700 !important; box-shadow: 0 4px 15px rgba(255,107,107,0.4) !important; }
+        
+        /* Responsive */
+        @media (max-width: 768px) { .hero-section { margin: 1rem; padding: 3rem 1.5rem; } .navbar-brand { font-size: 1.4rem !important; } }
+        .img-product { height: 220px; object-fit: cover; width: 100%; }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-3" href="#">🛒 Anjani Super Mart</a>
+            <a class="navbar-brand fw-bold" href="#"><i class="fas fa-store me-2"></i>अंजनी सुपर मार्ट</a>
             <form class="d-flex mx-auto" style="max-width: 500px;">
-                <input class="form-control me-2" type="search" id="searchInput" placeholder="🔍 Search...">
-                <button class="btn btn-warning" onclick="searchProducts()">Search</button>
+                <input class="form-control me-2 rounded-pill shadow-sm" type="search" id="searchInput" placeholder="🔍 Grocery, Saree, Jewellery खोजें...">
+                <button class="btn btn-warning rounded-pill px-4 shadow-sm" onclick="searchProducts()">
+                    <i class="fas fa-search"></i>
+                </button>
             </form>
-            <div>
-                <a href="login.html" class="btn btn-outline-light admin-toggle">
-                    <i class="fas fa-cog me-1"></i>Admin
-                </a>
-            </div>
+            <a href="login.html" class="btn admin-toggle rounded-pill px-4 shadow-sm">
+                <i class="fas fa-cog me-2"></i>Admin
+            </a>
         </div>
     </nav>
 
-    <div class="container-fluid mt-5">
-        <!-- Hero -->
-        <section class="hero-section text-center mb-5">
-            <h1 class="display-4 fw-bold mb-4">Welcome to Anjani Super Mart</h1>
-            <p class="lead mb-4">Grocery | Kids Wear | Jewellery | Everything Store!</p>
-        </section>
-
-        <!-- Categories -->
-        <section class="mb-5">
-            <h2 class="text-center mb-4">🛍️ Shop by Category</h2>
-            <div class="row justify-content-center" id="categoriesGrid"></div>
-        </section>
-
-        <!-- Products -->
-        <section>
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2>🔥 Featured Products</h2>
-                <a href="#" class="btn btn-outline-primary">View All →</a>
+    <!-- Hero Section -->
+    <section class="hero-section text-center mb-5">
+        <h1 class="display-3 fw-bold mb-4 animate__animated animate__bounceIn">सब कुछ एक ही दुकान!</h1>
+        <p class="lead fs-3 mb-4">Grocery | Saree | Kids Wear | Jewellery | Utensils | Cosmetics</p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="input-group shadow-lg">
+                    <span class="input-group-text bg-transparent border-0"><i class="fas fa-search fs-4"></i></span>
+                    <input type="text" class="form-control border-0 fs-5 py-3 bg-transparent" id="heroSearch" placeholder="आज क्या खरीदना है?">
+                    <button class="btn btn-warning px-4 fs-5 fw-bold" onclick="searchProducts()">खोजें</button>
+                </div>
             </div>
-            <div class="row" id="productsGrid"></div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Categories -->
+    <section class="container mb-5">
+        <h2 class="text-center mb-5 fw-bold fs-1 text-dark">🛍️ सभी Categories</h2>
+        <div class="row g-3 justify-content-center" id="categoriesGrid"></div>
+    </section>
+
+    <!-- Products -->
+    <section class="container-fluid pb-5">
+        <div class="d-flex justify-content-between align-items-center mb-5">
+            <h2 class="fw-bold fs-1 text-dark">🔥 Featured Products</h2>
+            <button class="btn btn-outline-primary btn-lg px-4 rounded-pill">सभी देखें →</button>
+        </div>
+        <div class="row g-4" id="productsGrid"></div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
