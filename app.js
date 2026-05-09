@@ -11,7 +11,7 @@ const products = [
 // Categories
 const categories = ["Grocery","Kids Wear","Gents Wear","Suit & Kurti","Cosmetics","Jewellery"];
 
-// 🔥 WHATSAPP ORDER (APNA NUMBER DAALO 👇 919876543210)
+// 🔥 WHATSAPP ORDER (+918467820968)
 function placeOrder(productId) {
     const product = products.find(p => p.id == productId);
     const name = prompt('👤 आपका नाम:');
@@ -20,7 +20,7 @@ function placeOrder(productId) {
     
     if(name && phone && qty) {
         const message = `🛒 *ANJANI SUPER MART ऑर्डर*\n\n👤 ${name}\n📱 ${phone}\n📦 ${product.name}\n💰 ₹${product.price}\n🔢 ${qty}\n💵 Total: ₹${product.price*qty}`;
-        window.open(`https://wa.me/919876543210?text=${encodeURIComponent(message)}`, '_blank');
+        window.open(`https://wa.me/918467820968?text=${encodeURIComponent(message)}`, '_blank');
     }
 }
 
