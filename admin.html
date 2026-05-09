@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Anjani Super Mart</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>🔧 Admin Panel</h1>
+        
+        <!-- Add Product Form -->
+        <div class="add-product-form">
+            <h3>Add New Product</h3>
+            <input type="text" id="productName" placeholder="Product Name">
+            <input type="number" id="productPrice" placeholder="Price">
+            <select id="productCategory">
+                <option>Grocery</option>
+                <option>Kids Wear</option>
+                <option>Gents Wear</option>
+                <!-- Add all categories -->
+            </select>
+            <input type="number" id="productStock" placeholder="Stock">
+            <button onclick="addProduct()">Add Product</button>
+        </div>
+
+        <!-- Products List -->
+        <div id="adminProductsList"></div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
