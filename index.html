@@ -3,190 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>अंजनी सुपर मार्ट - Kunda | Groceries & Daily Needs</title>
-    <meta name="description" content="अंजनी सुपर मार्ट - आपकी अपनी दुकान । 5km रेंज में फ्री डिलीवरी।  200+ खरीद पर">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Anjani Super Mart - Everything Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Location Alert -->
-    <div id="locationAlert" class="location-alert">
-        <div class="alert-content">
-            <i class="fas fa-map-marker-alt"></i>
-            <span># MAIN BRANCH 🏛️purvian ka purwa kunda-Bihar road  </span>
-            <button onclick="closeLocationAlert()">×</button>
-        </div>
-    </div>
-
     <!-- Header -->
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <img src="images/logo.png" alt="अंजनी सुपर मार्ट" class="logo-img">
-                    <div>
-                        <h2>अंजनी सुपर मार्ट</h2>
-                        <p>कुंडा | प्रतापगढ़</p>
-                    </div>
+    <header id="header"></header>
+
+    <main class="container-fluid">
+        <!-- Hero Banner -->
+        <section class="hero-section mb-5">
+            <div class="hero-content">
+                <h1>🛒 Anjani Super Mart</h1>
+                <p>सब कुछ एक ही जगह - Grocery से Jewellery तक!</p>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="🔍 Search Grocery, Clothes, Jewellery...">
+                    <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
                 </div>
-                <ul class="nav-menu">
-                    <li><a href="#home"><i class="fas fa-home"></i> होम</a></li>
-                    <li class="dropdown">
-                        <a href="#products"><i class="fas fa-box"></i> कैटेगरी <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" onclick="filterCategory('all')">सभी</a></li>
-                            <li><a href="#" onclick="filterCategory('GROCERY')">किराना</a></li>
-                            <li><a href="#" onclick="filterCategory('SAREE')">साड़ी</a></li>
-                            <li><a href="#" onclick="filterCategory('TOYS')">खिलौने</a></li>
-                            <li><a href="#" onclick="filterCategory('STATIONARY')">stationary</a></li>
-                            <li><a
-href="#" onclick="filterCategory('JEWELLERY')">रत्न</a></li>
-                            <li><a
-href="#" onclick="filterCategory('UTENSILS')">बर्तन</a></li>
-                            <li><a href="#" onclick="filterCategory('KIDS WEAR')">बच्चों के कपड़े</a></li>
-                            <li><a
-href="#" onclick="filterCategory('MENS WEAR')">आदमी के कपड़े</a></li>
-                            <li><a
-href="#" onclick="filterCategory('SUIT')">सूट</a></li>
-                            <li><a
-href="#" onclick="filterCategory('CROCKERIES')">क्रॉकरी</a></li>
-                            <li><a
-href="#" onclick="filterCategory('DECORATIVE ITEMS')">सजावट के सामान</a></li>
-                            <li><a
-href="#" onclick="filterCategory('GIFT ITEMS ')">उपहार</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#offers"><i class="fas fa-tags"></i> ऑफर</a></li>
-                    <li><a href="#contact"><i class="fas fa-phone"></i> संपर्क</a></li>
-                    <a href="#" class="cart-btn" id="cartBtn">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span id="cartCount">0</span>
-                    </a>
-                </ul>
             </div>
-        </nav>
-    </header>
+        </section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1><i class="fas fa-store"></i> अंजनी सुपर मार्ट</h1>
-            <p>हर घर की हर जरूरत का सामान एक जगह| 5km रेंज में फ्री डिलीवरी</p>
-            <div class="hero-stats">
-                <div><i class="fas fa-box-open"></i> 500+ उत्पाद</div>
-                <div><i class="fas fa-truck"></i> फ्री डिलीवरी</div>
-                <div><i class="fas fa-clock"></i> 7:00 AM - 8:00 PM</div>
+        <!-- Categories -->
+        <section class="categories-section mb-5">
+            <h2>🛍️ Shop by Category</h2>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories dynamically load -->
             </div>
-            <button class="cta-btn" onclick="scrollToProducts()">
-                <i class="fas fa-shopping-bag"></i> अभी खरीदारी शुरू करें
-            </button>
-        </div>
-    </section>
+        </section>
 
-    <!-- Products Section -->
-    <section id="products" class="products">
-        <div class="container">
+        <!-- Featured Products -->
+        <section class="products-section">
             <div class="section-header">
-                <h2><i class="fas fa-boxes"></i> हमारे उत्पाद</h2>
-                <div class="category-filter">
-                    <button class="filter-btn active" onclick="filterCategory('all')">सभी</button>
-                    <button class="filter-btn" onclick="filterCategory('dairy')">डेयरी</button>
-                    <button class="filter-btn" onclick="filterCategory('grains')">अनाज</button>
-                    <button class="filter-btn" onclick="filterCategory('oil')">तेल</button>
-                    <button class="filter-btn" onclick="filterCategory('spices')">मसाले</button>
-                    <button class="filter-btn" onclick="filterCategory('snacks')">स्नैक्स</button>
-                </div>
+                <h2>🔥 Featured Products</h2>
+                <a href="#" class="view-all">View All →</a>
             </div>
             <div class="products-grid" id="productsGrid">
-                <!-- Products load here -->
+                <!-- Products dynamically load -->
             </div>
-        </div>
-    </section>
-
-    <!-- Offers Section -->
-    <section id="offers" class="offers">
-        <div class="container">
-            <h2 class="section-title"><i class="fas fa-tags"></i> स्पेशल ऑफर</h2>
-            <div class="offers-grid">
-                <div class="offer-card">
-                    <div class="offer-discount">20% OFF</div>
-                    <h3>₹100+ पर फ्री डिलीवरी</h3>
-                    <p>कुंडा के 5km में</p>
-                </div>
-                <div class="offer-card">
-                    <div class="offer-discount">10% OFF</div>
-                    <h3>पहली खरीदारी पर</h3>
-                    <p>नए ग्राहकों के लिए</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Cart Modal -->
-    <div id="cartModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="fas fa-shopping-cart"></i> आपका ऑर्डर</h2>
-                <span class="close" onclick="closeCart()">&times;</span>
-            </div>
-            <div id="cartItems" class="cart-items"></div>
-            <div class="cart-footer">
-                <div class="cart-total">
-                    <h3>कुल: ₹<span id="totalAmount">0</span></h3>
-                    <p><strong>फ्री डिलीवरी</strong> (20km रेंज में)</p>
-                </div>
-                <button class="whatsapp-btn" id="whatsappBtn" onclick="placeOrder()">
-                    <i class="fab fa-whatsapp"></i> WhatsApp पर ऑर्डर भेजें
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title"><i class="fas fa-phone"></i> संपर्क करें</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <i class="fas fa-map-marker-alt fa-2x"></i>
-                    <h3>पता</h3>
-                    <p>कुंडा, प्रतापगढ़<br>उत्तर प्रदेश - 230204</p>
-                </div>
-                <div class="contact-card">
-                    <i class="fas fa-phone fa-2x"></i>
-                    <h3>फोन / WhatsApp</h3>
-                    <p><a href="tel:+918467820968">+91 9793809539</a></p>
-                </div>
-                <div class="contact-card">
-                    <i class="fas fa-clock fa-2x"></i>
-                    <h3>समय</h3>
-                    <p>सुबह 7:00 - रात 8:00<br>सप्ताह के सभी दिन</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3>अंजनी सुपर मार्ट</h3>
-                    <p>कुंडा का सबसे भरोसेमंद नाम</p>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">होम</a>
-                    <a href="#products">उत्पाद</a>
-                    <a href="#contact">संपर्क</a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 अंजनी सुपर मार्ट। सभी अधिकार सुरक्षित। | केवल कुंडा 20km रेंज में सेवा।</p>
-            </div>
-        </div>
-    </footer>
+    <footer id="footer"></footer>
 
-    <script src="script.js"></script>
+    <!-- Admin Button (Top Right) -->
+    <div class="admin-panel-toggle" onclick="window.location.href='login.html'">
+        <i class="fas fa-cog"></i> Admin
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
