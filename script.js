@@ -78,7 +78,7 @@ let cart = [];
 let currentCategory = 'all';
 
 // WhatsApp Number - अपना नंबर यहाँ डालें
-const WHATSAPP_NUMBER = "919xxxxxxxxx"; // अपना WhatsApp नंबर डालें
+const WHATSAPP_NUMBER = "+918467820968"; // अपना WhatsApp नंबर डालें
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
@@ -154,12 +154,13 @@ function filterCategory(category) {
 
 function getCategoryName(category) {
     const categories = {
-        dairy: 'डेयरी',
-        grains: 'अनाज',
-        oil: 'तेल',
-        spices: 'मसाले',
-        snacks: 'स्नैक्स'
-    };
+        suit: 'suit',
+        saree: 'saree',
+        toys: 'khilone',
+        utensils: 'bartan',
+        grocery: 'kirana'
+        kids wear: ' bacho ke kapde 
+  };
     return categories[category] || category;
 }
 
@@ -323,7 +324,7 @@ function placeOrder() {
     message += `\n📦 फ्री डिलीवरी (20km रेंज में)\n`;
     message += `कृपया जल्द से जल्द डिलीवर करें 🙏`;
     
-    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/${8467820968}?text=${encodeURIComponent(message)}`;
     window.open(whatsappURL, '_blank');
     
     // Optional: Clear cart after order
