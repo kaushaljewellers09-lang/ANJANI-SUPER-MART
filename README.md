@@ -1,9 +1,14 @@
 # ANJANI-SUPER-MART
 हर घर की हर जरूरत का सामान एक जगह 
- grocery store
- saree
- garments
- cosmetics 
- toys
- household goods
- utensils
+- GROCERY 
+- SAREE
+- KIDS WEAR
+- GENTS WEAR
+- SUIT
+- KURTI
+- COSMATICS
+- TOYS
+- PLASTIC WARE
+- UTENSILS
+- DECORATIVE MATERIAL
+- JEWELLERIES
