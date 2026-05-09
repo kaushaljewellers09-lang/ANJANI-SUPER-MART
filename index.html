@@ -3,56 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anjani Super Mart - Everything Store</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>🛒 Anjani Super Mart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); }
+        .hero-section { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important; 
+            color: white; 
+            padding: 4rem 2rem; 
+            border-radius: 20px; 
+            margin: 2rem; 
+        }
+        .product-card { 
+            transition: all 0.3s; 
+            border: none; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .category-card { 
+            background: white; 
+            padding: 2rem; 
+            border-radius: 15px; 
+            text-align: center; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .category-card:hover { transform: translateY(-5px); }
+        .whatsapp-btn { 
+            background: #25D366 !important; 
+            border-color: #25D366 !important; 
+            color: white !important; 
+        }
+        .admin-toggle { 
+            position: fixed; 
+            top: 20px; 
+            right: 20px; 
+            z-index: 9999; 
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
-    <header id="header"></header>
-
-    <main class="container-fluid">
-        <!-- Hero Banner -->
-        <section class="hero-section mb-5">
-            <div class="hero-content">
-                <h1>🛒 Anjani Super Mart</h1>
-                <p>सब कुछ एक ही जगह - Grocery से Jewellery तक!</p>
-                <div class="search-container">
-                    <input type="text" id="searchInput" placeholder="🔍 Search Grocery, Clothes, Jewellery...">
-                    <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">🛒 Anjani Super Mart</a>
+            <form class="d-flex mx-auto" style="max-width: 500px;">
+                <input class="form-control me-2" type="search" id="searchInput" placeholder="🔍 Search...">
+                <button class="btn btn-warning" onclick="searchProducts()">Search</button>
+            </form>
+            <div>
+                <a href="login.html" class="btn btn-outline-light admin-toggle">
+                    <i class="fas fa-cog me-1"></i>Admin
+                </a>
             </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-5">
+        <!-- Hero -->
+        <section class="hero-section text-center mb-5">
+            <h1 class="display-4 fw-bold mb-4">Welcome to Anjani Super Mart</h1>
+            <p class="lead mb-4">Grocery | Kids Wear | Jewellery | Everything Store!</p>
         </section>
 
         <!-- Categories -->
-        <section class="categories-section mb-5">
-            <h2>🛍️ Shop by Category</h2>
-            <div class="categories-grid" id="categoriesGrid">
-                <!-- Categories dynamically load -->
-            </div>
+        <section class="mb-5">
+            <h2 class="text-center mb-4">🛍️ Shop by Category</h2>
+            <div class="row justify-content-center" id="categoriesGrid"></div>
         </section>
 
-        <!-- Featured Products -->
-        <section class="products-section">
-            <div class="section-header">
+        <!-- Products -->
+        <section>
+            <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>🔥 Featured Products</h2>
-                <a href="#" class="view-all">View All →</a>
+                <a href="#" class="btn btn-outline-primary">View All →</a>
             </div>
-            <div class="products-grid" id="productsGrid">
-                <!-- Products dynamically load -->
-            </div>
+            <div class="row" id="productsGrid"></div>
         </section>
-    </main>
-
-    <!-- Footer -->
-    <footer id="footer"></footer>
-
-    <!-- Admin Button (Top Right) -->
-    <div class="admin-panel-toggle" onclick="window.location.href='login.html'">
-        <i class="fas fa-cog"></i> Admin
     </div>
 
-    <script src="js/auth.js"></script>
-    <script src="js/app.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
